@@ -15,7 +15,7 @@ jobs:
         config:
           - name: iOS
             os: macos-latest
-            platform: ios
+            target: iOS
 
     name: ${{ matrix.config.name }}
     runs-on: ${{ matrix.config.os }}
@@ -26,8 +26,19 @@ jobs:
       - name: Build mod
         uses: geode-sdk/build-geode-mod@main
         with:
-          bindings: 'geode-sdk/bindings'
-          bindings-ref: 'main'
           combine: true
-          platform: ${{ matrix.config.platform }}
-          target: ${{ matrix.config.platform }}
+          target: ${{ matrix.config.target }}
+
+  package:
+    name: Package builds
+    runs-on: ubuntu-latest
+    needs: ['build']
+
+    steps:
+      - uses: geode-sdk/build-geode-mod/combine@main
+        id: build
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Build Output
+          path: ${{ steps.build.outputs.build-output }}
