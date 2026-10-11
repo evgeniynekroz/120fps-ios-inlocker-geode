@@ -9,11 +9,15 @@ class $modify(MyMenuLayer, MenuLayer) {
             return false;
         }
 
-        CCDirector::sharedDirector()->setAnimationInterval(1.0 / 120.0);
+        if (auto director = CCDirector::sharedDirector()) {
+            director->setAnimationInterval(1.0 / 120.0);
+        }
         return true;
     }
 };
 
 $execute {
-    CCDirector::sharedDirector()->setAnimationInterval(1.0 / 120.0);
+    if (auto director = CCDirector::sharedDirector()) {
+        director->setAnimationInterval(1.0 / 120.0);
+    }
 }
