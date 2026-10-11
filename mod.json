@@ -1,0 +1,8 @@
+{
+  "geode": "4.0.0",
+  "version": "v1.0.0",
+  "id": "nekroz.ios_120fps",
+  "name": "iOS 120 FPS",
+  "developer": "nekroz",
+  "description": "Unlocks 120 FPS on iOS ProMotion displays."
+}
